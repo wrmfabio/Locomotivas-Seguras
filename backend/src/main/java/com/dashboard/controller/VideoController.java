@@ -3,37 +3,30 @@ package com.dashboard.controller;
 import org.springframework.web.bind.annotation.*;
 import java.util.*;
 
-@GetMapping("/list")
-public List<String> listVideos() {
-    File folder = new File("videos");
-    String[] files = folder.list((dir, name) -> name.endsWith(".mp4"));
-
-    return Arrays.asList(files);
-}
-
-@GetMapping("/{name}")
-public ResponseEntity<Resource> getVideo(@PathVariable String name) {
-    File file = new File("videos/" + name);
-    Resource resource = new FileSystemResource(file);
-
-    return ResponseEntity.ok()
-        .contentType(MediaType.parseMediaType("video/mp4"))
-        .body(resource);
-}
-
 @RestController
 @RequestMapping("/api/video")
 public class VideoController {
 
+    @GetMapping("/list")
+    public List<String> listVideos() {
+        return List.of("video1.mp4", "video2.mp4");
+    }
+
     @GetMapping("/annotations")
-    public List<Map<String, String>> getAnnotations() {
-        List<Map<String, String>> list = new ArrayList<>();
+    public List<Map<String, String>> annotations() {
+        List<Map<String, String>> data = new ArrayList<>();
 
-        Map<String, String> item = new HashMap<>();
-        item.put("time", "00:10");
-        item.put("label", "Objeto detectado");
+        Map<String, String> item1 = new HashMap<>();
+        item1.put("time", "00:05");
+        item1.put("label", "Falha detectada");
 
-        list.add(item);
-        return list;
+        Map<String, String> item2 = new HashMap<>();
+        item2.put("time", "00:12");
+        item2.put("label", "Anomalia");
+
+        data.add(item1);
+        data.add(item2);
+
+        return data;
     }
 }
