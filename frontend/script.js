@@ -1,83 +1,50 @@
-async function loadAnnotations() {
-  const response = await fetch('http://localhost:8080/api/video/annotations');
-  const data = await response.json();
+let videosGlobal = [];
 
-  const list = document.getElementById('annotationsList');
-  list.innerHTML = '';
-
-  data.forEach(item => {
-    const li = document.createElement('li');
-    li.textContent = `${item.time} - ${item.label}`;
-
-    li.onclick = () => {
-      const video = document.getElementById('videoPlayer');
-      const parts = item.time.split(':');
-      video.currentTime = parseInt(parts[0]) * 60 + parseInt(parts[1]);
-      video.play();
-    };
-
-    list.appendChild(li);
-  });
-}
-
-loadAnnotations();
-
+// 🔹 Carregar vídeos do backend
 async function loadVideos() {
-  const res = await fetch('http://localhost:8080/api/video/list');
-  const videos = await res.json();
+  try {
+    const res = await fetch('http://localhost:8080/api/video/list');
+    const videos = await res.json();
 
-  const container = document.getElementById('videoList');
+    videosGlobal = videos;
 
-  videos.forEach(video => {
-    const div = document.createElement('div');
-    div.textContent = video;
-    div.classList.add('video-item');
+    const container = document.getElementById('videoList');
+    const total = document.getElementById('totalVideos');
 
-    div.onclick = () => {
-      window.location.href = `player.html?video=${video}`;
-    };
+    if (total) total.textContent = videos.length;
 
-    container.appendChild(div);
-  });
+    container.innerHTML = '';
+
+    videos.forEach(video => {
+      const card = document.createElement('div');
+      card.classList.add('video-card');
+
+      card.innerHTML = `
+        <div class="video-thumb">🎬</div>
+        <div class="video-info">
+          <h3>${video}</h3>
+          <p>Inspeção automatizada por IA</p>
+        </div>
+      `;
+
+      // 🔥 REDIRECIONAMENTO PARA PLAYER
+      card.onclick = () => {
+        window.location.href = `player.html?video=${encodeURIComponent(video)}`;
+      };
+
+      container.appendChild(card);
+    });
+
+  } catch (error) {
+    console.error('Erro ao carregar vídeos:', error);
+  }
 }
 
-loadVideos();
-
-async function loadVideos() {
-  const res = await fetch('http://localhost:8080/api/video/list');
-  const videos = await res.json();
-
-  const container = document.getElementById('videoList');
-  const total = document.getElementById('totalVideos');
-
-  total.textContent = videos.length;
-
-  container.innerHTML = '';
-
-  videos.forEach(video => {
-    const card = document.createElement('div');
-    card.classList.add('video-card');
-
-    card.innerHTML = `
-      <div class="video-thumb">
-        <span>🎬</span>
-      </div>
-      <div class="video-info">
-        <h3>${video}</h3>
-        <p>Locomotiva monitorada</p>
-      </div>
-    `;
-
-    card.onclick = () => {
-      window.location.href = `player.html?video=${video}`;
-    };
-
-    container.appendChild(card);
-  });
-}
-
+// 🔍 Busca de vídeos
 function setupSearch() {
   const input = document.getElementById('search');
+
+  if (!input) return;
 
   input.addEventListener('input', () => {
     const filter = input.value.toLowerCase();
@@ -90,5 +57,17 @@ function setupSearch() {
   });
 }
 
-loadVideos();
-setupSearch();
+// ▶️ Botão "Abrir último vídeo"
+function goToFirstVideo() {
+  if (videosGlobal.length > 0) {
+    window.location.href = `player.html?video=${encodeURIComponent(videosGlobal[0])}`;
+  } else {
+    alert("Nenhum vídeo disponível.");
+  }
+}
+
+// 🚀 Inicialização
+document.addEventListener('DOMContentLoaded', () => {
+  loadVideos();
+  setupSearch();
+});

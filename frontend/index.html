@@ -11,13 +11,18 @@
 
   <!-- SIDEBAR -->
   <aside class="sidebar">
-    <h2>Locomotivas Inspecionadas</h2>
-    <ul>
-      <li class="active">Dashboard</li>
-      <li>Locomotivas</li>
-      <li>Análises</li>
-      <li>Relatórios</li>
-    </ul>
+    <div class="logo">
+      <h2>RUMO AI</h2>
+    </div>
+
+    <nav>
+      <ul>
+        <li class="active">📊 Dashboard</li>
+        <li>🚆 Locomotivas</li>
+        <li>📈 Análises</li>
+        <li>📄 Relatórios</li>
+      </ul>
+    </nav>
   </aside>
 
   <!-- MAIN -->
@@ -25,19 +30,58 @@
 
     <!-- HEADER -->
     <header class="header">
-      <h1>Dados para Análises/h1>
-      <input type="text" id="search" placeholder="Buscar vídeo..." />
+      <div class="header-left">
+        <h1>Centro de Monitoramento Ferroviário</h1>
+      </div>
+
+      <div class="header-right">
+        <input type="text" id="search" placeholder="Buscar vídeo..." />
+        <div class="user">
+          <span>👤 Fábio</span>
+        </div>
+      </div>
     </header>
+
+    <!-- HERO / AÇÃO RÁPIDA -->
+    <section class="hero">
+      <div>
+        <h2>Monitoramento Inteligente com IA</h2>
+        <p>Analise vídeos das locomotivas e detecte falhas automaticamente.</p>
+      </div>
+
+      <button onclick="goToFirstVideo()" class="btn-primary">
+        ▶️ Abrir Último Vídeo
+      </button>
+    </section>
 
     <!-- STATS -->
     <section class="stats">
-      <div class="card">🚆 <span id="totalVideos">0</span><p>Vídeos</p></div>
-      <div class="card">⚠️ 12<p>Alertas</p></div>
-      <div class="card">📊 93%<p>Precisão IA</p></div>
+      <div class="card">
+        <h3 id="totalVideos">0</h3>
+        <p>Vídeos</p>
+      </div>
+
+      <div class="card">
+        <h3>12</h3>
+        <p>Alertas críticos</p>
+      </div>
+
+      <div class="card">
+        <h3>93%</h3>
+        <p>Precisão IA</p>
+      </div>
+
+      <div class="card">
+        <h3>Online</h3>
+        <p>Status do sistema</p>
+      </div>
     </section>
 
-    <!-- VIDEO GRID -->
-    <section id="videoList" class="grid"></section>
+    <!-- GRID -->
+    <section>
+      <h2 class="section-title">Vídeos disponíveis</h2>
+      <div id="videoList" class="grid"></div>
+    </section>
 
   </main>
 
