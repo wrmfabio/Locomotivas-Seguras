@@ -3,6 +3,24 @@ package com.dashboard.controller;
 import org.springframework.web.bind.annotation.*;
 import java.util.*;
 
+@GetMapping("/list")
+public List<String> listVideos() {
+    File folder = new File("videos");
+    String[] files = folder.list((dir, name) -> name.endsWith(".mp4"));
+
+    return Arrays.asList(files);
+}
+
+@GetMapping("/{name}")
+public ResponseEntity<Resource> getVideo(@PathVariable String name) {
+    File file = new File("videos/" + name);
+    Resource resource = new FileSystemResource(file);
+
+    return ResponseEntity.ok()
+        .contentType(MediaType.parseMediaType("video/mp4"))
+        .body(resource);
+}
+
 @RestController
 @RequestMapping("/api/video")
 public class VideoController {

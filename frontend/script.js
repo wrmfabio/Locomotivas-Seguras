@@ -21,3 +21,25 @@ async function loadAnnotations() {
 }
 
 loadAnnotations();
+
+async function loadVideos() {
+  const res = await fetch('http://localhost:8080/api/video/list');
+  const videos = await res.json();
+
+  const container = document.getElementById('videoList');
+
+  videos.forEach(video => {
+    const div = document.createElement('div');
+    div.textContent = video;
+    div.classList.add('video-item');
+
+    div.onclick = () => {
+      window.location.href = `player.html?video=${video}`;
+    };
+
+    container.appendChild(div);
+  });
+}
+
+loadVideos();
+

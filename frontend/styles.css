@@ -40,3 +40,11 @@ video {
   background: #333;
   cursor: pointer;
 }
+
+.video-item {
+  padding: 15px;
+  background: #222;
+  color: white;
+  margin: 10px;
+  cursor: pointer;
+}
