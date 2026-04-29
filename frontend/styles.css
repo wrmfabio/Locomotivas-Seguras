@@ -1,27 +1,38 @@
-/* Estrutura da página inicial index.html */
+/* =========================
+   BASE
+========================= */
 body {
   margin: 0;
   font-family: 'Segoe UI', sans-serif;
-  background: #0a0f1c;
+  background: radial-gradient(circle at top, #0f172a, #020617);
   color: #e2e8f0;
 }
 
+/* =========================
+   LAYOUT
+========================= */
 .layout {
   display: flex;
 }
 
-/* SIDEBAR */
+/* =========================
+   SIDEBAR
+========================= */
 .sidebar {
-  width: 240px;
-  background: #020617;
+  width: 250px;
+  background: linear-gradient(180deg, #020617, #020617 60%, #020617cc);
   height: 100vh;
   padding: 20px;
-  border-right: 1px solid #1e293b;
+  border-right: 1px solid rgba(56, 189, 248, 0.15);
+  box-shadow: inset -1px 0 0 rgba(56, 189, 248, 0.1);
 }
 
 .logo {
   color: #38bdf8;
+  font-weight: bold;
+  font-size: 20px;
   margin-bottom: 30px;
+  text-shadow: 0 0 10px rgba(56, 189, 248, 0.5);
 }
 
 .sidebar ul {
@@ -33,103 +44,198 @@ body {
   padding: 12px;
   cursor: pointer;
   color: #94a3b8;
-  border-radius: 6px;
+  border-radius: 8px;
+  transition: all 0.25s ease;
 }
 
 .sidebar li.active,
 .sidebar li:hover {
-  background: #1e293b;
-  color: white;
+  background: rgba(56, 189, 248, 0.1);
+  color: #38bdf8;
+  box-shadow: 0 0 10px rgba(56, 189, 248, 0.2);
 }
 
-/* MAIN */
+/* =========================
+   MAIN
+========================= */
 .main {
   flex: 1;
-  padding: 20px;
+  padding: 25px;
 }
 
-/* HEADER */
+/* =========================
+   HEADER
+========================= */
 .header {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
-.header input {
-  padding: 10px;
-  border-radius: 8px;
-  border: none;
-  margin-right: 10px;
+.header h1 {
+  font-weight: 600;
+  letter-spacing: 1px;
 }
 
-/* HERO */
+.header input {
+  padding: 10px 14px;
+  border-radius: 10px;
+  border: none;
+  background: #020617;
+  color: white;
+  outline: none;
+  border: 1px solid rgba(56, 189, 248, 0.2);
+  transition: 0.2s;
+}
+
+.header input:focus {
+  border: 1px solid #38bdf8;
+  box-shadow: 0 0 10px rgba(56, 189, 248, 0.3);
+}
+
+/* =========================
+   HERO
+========================= */
 .hero {
-  margin: 20px 0;
-  padding: 20px;
-  background: linear-gradient(90deg, #020617, #1e293b);
-  border-radius: 12px;
+  margin: 25px 0;
+  padding: 25px;
+  border-radius: 14px;
+
+  background: linear-gradient(135deg, rgba(56, 189, 248, 0.1), rgba(2, 6, 23, 0.8));
+  backdrop-filter: blur(10px);
+
   display: flex;
   justify-content: space-between;
   align-items: center;
+
+  border: 1px solid rgba(56, 189, 248, 0.2);
 }
 
+.hero h2 {
+  margin: 0;
+  color: #38bdf8;
+}
+
+.hero p {
+  color: #94a3b8;
+}
+
+/* BOTÃO */
 .btn-primary {
-  background: #38bdf8;
+  background: linear-gradient(135deg, #38bdf8, #0ea5e9);
   border: none;
-  padding: 12px 20px;
-  border-radius: 8px;
+  padding: 12px 22px;
+  border-radius: 10px;
   cursor: pointer;
+  color: black;
+  font-weight: bold;
+  transition: all 0.25s ease;
 }
 
-/* STATS */
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 0 15px rgba(56, 189, 248, 0.5);
+}
+
+/* =========================
+   STATS
+========================= */
 .stats {
   display: flex;
   gap: 15px;
-  margin: 20px 0;
+  margin: 25px 0;
 }
 
 .card {
-  background: #1e293b;
+  background: rgba(30, 41, 59, 0.6);
+  backdrop-filter: blur(8px);
+
   padding: 20px;
-  border-radius: 12px;
+  border-radius: 14px;
   flex: 1;
   text-align: center;
+
+  border: 1px solid rgba(56, 189, 248, 0.15);
+  transition: all 0.25s ease;
 }
 
-/* GRID */
+.card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 0 15px rgba(56, 189, 248, 0.2);
+}
+
+.card h3 {
+  font-size: 28px;
+  margin: 0;
+  color: #38bdf8;
+}
+
+.card p {
+  margin: 5px 0 0;
+  color: #94a3b8;
+}
+
+/* =========================
+   GRID
+========================= */
 .grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
   gap: 20px;
 }
 
-/* VIDEO CARD */
+/* =========================
+   VIDEO CARD
+========================= */
 .video-card {
-  background: #1e293b;
-  border-radius: 12px;
+  background: rgba(30, 41, 59, 0.7);
+  border-radius: 14px;
   overflow: hidden;
   cursor: pointer;
-  transition: 0.3s;
+  transition: all 0.3s ease;
+
+  border: 1px solid rgba(56, 189, 248, 0.15);
+  backdrop-filter: blur(6px);
 }
 
 .video-card:hover {
-  transform: translateY(-5px);
+  transform: translateY(-6px) scale(1.01);
+  box-shadow: 0 0 20px rgba(56, 189, 248, 0.25);
 }
 
+/* THUMB */
 .video-thumb {
   height: 150px;
-  background: black;
+  background: linear-gradient(135deg, #020617, #0f172a);
   display: flex;
   align-items: center;
   justify-content: center;
+  font-size: 40px;
 }
 
+/* INFO */
 .video-info {
   padding: 15px;
 }
 
+.video-info h3 {
+  margin: 0;
+  font-size: 16px;
+}
+
+.video-info p {
+  margin: 5px 0 0;
+  font-size: 13px;
+  color: #94a3b8;
+}
+
+/* =========================
+   TITLES
+========================= */
 .section-title {
   margin-top: 30px;
+  font-weight: 600;
+  letter-spacing: 1px;
 }
 
 /* Estrutura da página do player de apontamentos */
