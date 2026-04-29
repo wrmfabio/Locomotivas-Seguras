@@ -1,3 +1,115 @@
+/* Estrutura da página inicial index.html */
+body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background: #0f172a;
+  color: white;
+}
+
+.layout {
+  display: flex;
+}
+
+/* SIDEBAR */
+.sidebar {
+  width: 220px;
+  background: #020617;
+  height: 100vh;
+  padding: 20px;
+}
+
+.sidebar h2 {
+  color: #38bdf8;
+}
+
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+}
+
+.sidebar li {
+  padding: 10px;
+  cursor: pointer;
+  color: #94a3b8;
+}
+
+.sidebar li.active,
+.sidebar li:hover {
+  color: white;
+}
+
+/* MAIN */
+.main {
+  flex: 1;
+  padding: 20px;
+}
+
+/* HEADER */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header input {
+  padding: 10px;
+  border-radius: 8px;
+  border: none;
+}
+
+/* STATS */
+.stats {
+  display: flex;
+  gap: 15px;
+  margin: 20px 0;
+}
+
+.card {
+  background: #1e293b;
+  padding: 20px;
+  border-radius: 10px;
+  flex: 1;
+  text-align: center;
+}
+
+/* GRID */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 15px;
+}
+
+/* VIDEO CARD */
+.video-card {
+  background: #1e293b;
+  border-radius: 10px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.video-card:hover {
+  transform: scale(1.03);
+}
+
+.video-thumb {
+  height: 140px;
+  background: black;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.video-thumb span {
+  font-size: 40px;
+}
+
+.video-info {
+  padding: 10px;
+}
+
+/* Estrutura da página do player de apontamentos */
+
 body {
   margin: 0;
   font-family: Arial;
