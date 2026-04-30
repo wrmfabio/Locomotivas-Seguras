@@ -1,6 +1,22 @@
+
 let videosGlobal = [];
 
-// 🔹 Carregar vídeos do backend
+// =========================
+// SIDEBAR TOGGLE
+// =========================
+function toggleSidebar() {
+  const sidebar = document.getElementById("sidebar");
+  const layout = document.getElementById("layout");
+
+  if (!sidebar || !layout) return;
+
+  sidebar.classList.toggle("hidden");
+  layout.classList.toggle("expanded");
+}
+
+// =========================
+// CARREGAR VÍDEOS DO BACKEND
+// =========================
 async function loadVideos() {
   try {
     const res = await fetch('http://localhost:8080/api/video/list');
@@ -10,6 +26,8 @@ async function loadVideos() {
 
     const container = document.getElementById('videoList');
     const total = document.getElementById('totalVideos');
+
+    if (!container) return;
 
     if (total) total.textContent = videos.length;
 
@@ -27,10 +45,12 @@ async function loadVideos() {
         </div>
       `;
 
-      // 🔥 REDIRECIONAMENTO PARA PLAYER
-      card.onclick = () => {
+      // =========================
+      // REDIRECIONAMENTO PLAYER
+      // =========================
+      card.addEventListener('click', () => {
         window.location.href = `player.html?video=${encodeURIComponent(video)}`;
-      };
+      });
 
       container.appendChild(card);
     });
@@ -40,7 +60,9 @@ async function loadVideos() {
   }
 }
 
-// 🔍 Busca de vídeos
+// =========================
+// BUSCA DE VÍDEOS
+// =========================
 function setupSearch() {
   const input = document.getElementById('search');
 
@@ -57,7 +79,9 @@ function setupSearch() {
   });
 }
 
-// ▶️ Botão "Abrir último vídeo"
+// =========================
+// ABRIR PRIMEIRO VÍDEO
+// =========================
 function goToFirstVideo() {
   if (videosGlobal.length > 0) {
     window.location.href = `player.html?video=${encodeURIComponent(videosGlobal[0])}`;
@@ -66,7 +90,9 @@ function goToFirstVideo() {
   }
 }
 
-// 🚀 Inicialização
+// =========================
+// INIT
+// =========================
 document.addEventListener('DOMContentLoaded', () => {
   loadVideos();
   setupSearch();

@@ -5,149 +5,47 @@
   <title>🚆 Dashboard - Locomotivas Seguras</title>
   <link rel="stylesheet" href="styles.css">
 </head>
+
 <body>
 
 <div class="layout">
 
   <!-- SIDEBAR -->
-  <aside class="sidebar">
-    <div class="logo">
-      <h2>RUMO - MALHA SUL</h2>
-    </div>
+  <button class="toggle-btn" onclick="toggleSidebar()">☰</button>
+  <aside class="sidebar" id="sidebar">
 
-    <nav>
-      <ul>
-        <li class="active">👤 Luiz 🟢 online</li>
-        <li>📈 Análises</li>
-        <li>📄 Relatórios</li>
-        <li>🚆 versão v1_0_0</li>
-      </ul>
-    </nav>
-  </aside>
+  <div class="logo">
+    <h2>RUMO - MALHA SUL</h2>
+  </div>
+
+  <!-- BOTÃO TOGGLE -->
+
+  <nav>
+    <ul>
+      <li class="active">👤 Luiz 🟢 online</li>
+      <li>📈 Análises</li>
+      <li>📄 Relatórios</li>
+      <li>🚆 versão v1.0.0</li>
+    </ul>
+  </nav>
+
+</aside>
 
   <!-- MAIN -->
-  <main class="main">
+  <main class="main" id="main">
 
     <!-- HEADER -->
     <header class="header">
-      <div class="header-left">
-        <h1>Centro de Monitoramento de Locomotivas Seguras</h1>
+      <h1>Centro de Monitoramento de Locomotivas Seguras</h1>
+    </header>
+
+    <!-- STATUS -->
+    <section class="stats">
+      <div class="card">
+        <h3 id="totalVideos">12</h3>
+        <p>Locomotivas monitoradas</p>
       </div>
 
-  <!-- SEÇÃO DE LOCOMOTIVAS -->  
-    
-    <!-- HERO / AÇÃO RÁPIDA -->
-    <section class="hero">
-      <div>
-        <h2>Locomotiva 677 -        29-04-2026 12:20</h2>
-      </div>
-
-      <a href="player.html" class="botao">
-        ▶️ ABRIR
-        </a>
-    </section>
-
-    <!-- HERO 2 / AÇÃO RÁPIDA -->
-    <section class="hero">
-      <div>
-        <h2>Locomotiva 678 - 29-04-2026 13:20</h2>
-      </div>
-
-      <a href="player.html" class="botao">
-        ▶️ ABRIR
-        </a>
-    </section>
-
-    <!-- HERO 3 / AÇÃO RÁPIDA -->
-    <section class="hero">
-      <div>
-        <h2>Locomotiva 679 - 29-04-2026 14:20</h2>
-      </div>
-
-      <a href="player.html" class="botao">
-        ▶️ ABRIR
-        </a>
-    </section>
-
-    <!-- HERO 4 / AÇÃO RÁPIDA -->
-    <section class="hero">
-      <div>
-        <h2>Locomotiva 680 - 29-04-2026 15:20</h2>
-      </div>
-      
-      <a href="player.html" class="botao">
-        ▶️ ABRIR
-        </a>
-    </section>
-
-    <!-- HERO 5 / AÇÃO RÁPIDA -->
-    <section class="hero">
-      <div>
-        <h2>Locomotiva 681 - 29-04-2026 16:20</h2>
-      </div>
-
-      <a href="player.html" class="botao">
-        ▶️ ABRIR
-        </a>
-    </section>
-
-    <!-- HERO 6 / AÇÃO RÁPIDA -->
-    <section class="hero">
-      <div>
-        <h2>Locomotiva 682 - 29-04-2026 17:20</h2>
-      </div>
-
-
-      <a href="player.html" class="botao">
-        ▶️ ABRIR
-        </a>
-    </section>
-
-    <!-- HERO 7 / AÇÃO RÁPIDA -->
-    <section class="hero">
-      <div>
-        <h2>Locomotiva 683 - 29-04-2026 18:20</h2>
-      </div>
-
-      <a href="player.html" class="botao">
-        ▶️ ABRIR
-        </a>
-      </section>
-
-    <!-- HERO 8 / AÇÃO RÁPIDA -->
-    <section class="hero">
-      <div>
-        <h2>Locomotiva 684- 29-04-2026 19:20</h2>
-      </div>
-
-      <a href="player.html" class="botao">
-        ▶️ ABRIR
-        </a>
-    </section>
-
-  <!-- HERO 9 / AÇÃO RÁPIDA -->
-    <section class="hero">
-      <div>
-        <h2>Locomotiva 685 - 29-04-2026 20:20</h2>
-      </div>
-
-      <a href="player.html" class="botao">
-        ▶️ ABRIR
-        </a>
-    </section>
-
-    <!-- HERO 10 / AÇÃO RÁPIDA -->
-    <section class="hero">
-      <div>
-        <h2>Locomotiva 686 - 29-04-2026 21:20</h2>
-      </div>
-
-      <a href="player.html" class="botao">
-        ▶️ ABRIR
-        </a>
-    </section>
-
-    <!-- STATS -->
       <div class="card">
         <h3>12</h3>
         <p>Alertas críticos</p>
@@ -158,10 +56,163 @@
         <p>Precisão IA</p>
       </div>
     </section>
+
+    <!-- LISTA DINÂMICA DE LOCOMOTIVAS -->
+    <section id="videoList" class="grid">
+
+      <div class="video-card">
+        <div class="video-info">
+          <h3>Locomotiva 677</h3>
+          <p>29-04-2026 12:20</p>
+          <a class="btn" href="player.html?video=video1.mp4">▶ ABRIR</a>
+        </div>
+      </div>
+
+      <div class="video-card">
+        <div class="video-info">
+          <h3>Locomotiva 678</h3>
+          <p>29-04-2026 13:20</p>
+          <a class="btn" href="player.html?video=video2.mp4">▶ ABRIR</a>
+        </div>
+      </div>
+
+      <div class="video-card">
+        <div class="video-info">
+          <h3>Locomotiva 679</h3>
+          <p>29-04-2026 14:20</p>
+          <a class="btn" href="player.html">▶ ABRIR</a>
+        </div>
+      </div>
+
+      <div class="video-card">
+        <div class="video-info">
+          <h3>Locomotiva 677</h3>
+          <p>29-04-2026 12:20</p>
+          <a class="btn" href="player.html?video=video1.mp4">▶ ABRIR</a>
+        </div>
+      </div>
+
+      <div class="video-card">
+        <div class="video-info">
+          <h3>Locomotiva 678</h3>
+          <p>29-04-2026 13:20</p>
+          <a class="btn" href="player.html?video=video2.mp4">▶ ABRIR</a>
+        </div>
+      </div>
+
+      <div class="video-card">
+        <div class="video-info">
+          <h3>Locomotiva 679</h3>
+          <p>29-04-2026 14:20</p>
+          <a class="btn" href="player.html">▶ ABRIR</a>
+        </div>
+      </div>
+
+      <div class="video-card">
+        <div class="video-info">
+          <h3>Locomotiva 677</h3>
+          <p>29-04-2026 12:20</p>
+          <a class="btn" href="player.html?video=video1.mp4">▶ ABRIR</a>
+        </div>
+      </div>
+
+      <div class="video-card">
+        <div class="video-info">
+          <h3>Locomotiva 678</h3>
+          <p>29-04-2026 13:20</p>
+          <a class="btn" href="player.html?video=video2.mp4">▶ ABRIR</a>
+        </div>
+      </div>
+
+      <div class="video-card">
+        <div class="video-info">
+          <h3>Locomotiva 679</h3>
+          <p>29-04-2026 14:20</p>
+          <a class="btn" href="player.html">▶ ABRIR</a>
+        </div>
+      </div>
+
+      <div class="video-card">
+        <div class="video-info">
+          <h3>Locomotiva 677</h3>
+          <p>29-04-2026 12:20</p>
+          <a class="btn" href="player.html?video=video1.mp4">▶ ABRIR</a>
+        </div>
+      </div>
+
+      <div class="video-card">
+        <div class="video-info">
+          <h3>Locomotiva 678</h3>
+          <p>29-04-2026 13:20</p>
+          <a class="btn" href="player.html?video=video2.mp4">▶ ABRIR</a>
+        </div>
+      </div>
+
+      <div class="video-card">
+        <div class="video-info">
+          <h3>Locomotiva 679</h3>
+          <p>29-04-2026 14:20</p>
+          <a class="btn" href="player.html">▶ ABRIR</a>
+        </div>
+      </div>
+
+      <div class="video-card">
+        <div class="video-info">
+          <h3>Locomotiva 677</h3>
+          <p>29-04-2026 12:20</p>
+          <a class="btn" href="player.html?video=video1.mp4">▶ ABRIR</a>
+        </div>
+      </div>
+
+      <div class="video-card">
+        <div class="video-info">
+          <h3>Locomotiva 678</h3>
+          <p>29-04-2026 13:20</p>
+          <a class="btn" href="player.html?video=video2.mp4">▶ ABRIR</a>
+        </div>
+      </div>
+
+      <div class="video-card">
+        <div class="video-info">
+          <h3>Locomotiva 679</h3>
+          <p>29-04-2026 14:20</p>
+          <a class="btn" href="player.html">▶ ABRIR</a>
+        </div>
+      </div>
+
+      <div class="video-card">
+        <div class="video-info">
+          <h3>Locomotiva 677</h3>
+          <p>29-04-2026 12:20</p>
+          <a class="btn" href="player.html?video=video1.mp4">▶ ABRIR</a>
+        </div>
+      </div>
+
+      <div class="video-card">
+        <div class="video-info">
+          <h3>Locomotiva 678</h3>
+          <p>29-04-2026 13:20</p>
+          <a class="btn" href="player.html?video=video2.mp4">▶ ABRIR</a>
+        </div>
+      </div>
+
+      <div class="video-card">
+        <div class="video-info">
+          <h3>Locomotiva 679</h3>
+          <p>29-04-2026 14:20</p>
+          <a class="btn" href="player.html">▶ ABRIR</a>
+        </div>
+      </div>
+
+       
+
+    </section>
+
   </main>
 
 </div>
 
 <script src="script.js"></script>
+
 </body>
 </html>
