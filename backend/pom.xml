@@ -16,31 +16,38 @@
     <artifactId>locomotivas-seguras</artifactId>
     <version>1.0.0</version>
 
+    <name>Locomotivas Seguras</name>
+    <description>Backend para análise de vídeos ferroviários com IA</description>
+
+    <packaging>jar</packaging>
+
     <properties>
         <java.version>17</java.version>
     </properties>
 
     <dependencies>
 
-        <!-- WEB -->
+        <!-- API WEB -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
 
-        <!-- SECURITY -->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-security</artifactId>
-        </dependency>
+        <!--  REMOVIDO TEMPORARIAMENTE -->
+        <!-- Segurança será adicionada depois corretamente -->
 
     </dependencies>
 
     <build>
+        <finalName>app</finalName>
+
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+                    <mainClass>com.dashboard.Application</mainClass>
+                </configuration>
             </plugin>
         </plugins>
     </build>
