@@ -1,20 +1,15 @@
-
 const API_BASE = "http://localhost:8080/api/video";
 
 // =========================
-// 1. PEGAR VÍDEO DA URL
+// PEGAR VÍDEO DA URL
 // =========================
 const params = new URLSearchParams(window.location.search);
 const videoName = params.get("video");
 
 // =========================
-// 2. CARREGAR VÍDEO NO PLAYER
+// CARREGAR VÍDEO
 // =========================
-
 function loadVideo() {
-  const params = new URLSearchParams(window.location.search);
-  const videoName = params.get("video");
-
   if (!videoName) return;
 
   const video = document.getElementById("videoPlayer");
@@ -24,42 +19,60 @@ function loadVideo() {
 }
 
 // =========================
-// 3. CARREGAR APONTAMENTOS (IA)
+// CARREGAR APONTAMENTOS E JOGAR NA SIDEBAR
 // =========================
 async function loadAnnotations() {
   try {
-    const response = await fetch(`${API_BASE}/annotations?video=${videoName}`);
-    const data = await response.json();
+    const res = await fetch(`${API_BASE}/annotations?video=${videoName}`);
+    const data = await res.json();
 
     const list = document.getElementById("annotationsList");
+    const video = document.getElementById("videoPlayer");
+
     list.innerHTML = "";
 
-    data.forEach(item => {
-      const li = document.createElement("li");
+    data
+      .sort((a, b) => timeToSeconds(a.time) - timeToSeconds(b.time)) // ordena por tempo
+      .forEach(item => {
+        const li = document.createElement("li");
 
-      li.textContent = `${item.time} - ${item.label}`;
+        li.textContent = `${item.time} - ${item.label}`;
+        li.style.cursor = "pointer";
 
-      li.onclick = () => {
-        const video = document.getElementById("videoPlayer");
+        li.onclick = () => {
+          const seconds = timeToSeconds(item.time);
 
-        // converte "mm:ss"
-        const parts = item.time.split(":");
-        const seconds = parseInt(parts[0]) * 60 + parseInt(parts[1]);
+          video.currentTime = seconds;
+          video.play();
+        };
 
-        video.currentTime = seconds;
-        video.play();
-      };
+        list.appendChild(li);
+      });
 
-      list.appendChild(li);
-    });
-
-  } catch (error) {
-    console.error("Erro ao carregar apontamentos:", error);
+  } catch (err) {
+    console.error("Erro ao carregar apontamentos:", err);
   }
 }
 
 // =========================
-// 4. AUTO START
+// CONVERTER TEMPO (ROBUSTO)
+// =========================
+function timeToSeconds(time) {
+  const parts = time.split(":").map(Number);
+
+  if (parts.length === 2) {
+    return parts[0] * 60 + parts[1];
+  }
+
+  if (parts.length === 3) {
+    return parts[0] * 3600 + parts[1] * 60 + parts[2];
+  }
+
+  return 0;
+}
+
+// =========================
+// START
 // =========================
 document.addEventListener("DOMContentLoaded", () => {
   loadVideo();
